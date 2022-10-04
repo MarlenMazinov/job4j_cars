@@ -18,14 +18,7 @@ public class UserRepository {
         Session session = sf.openSession();
         try {
             session.beginTransaction();
-            session.createQuery(
-                            "INSERT INTO User (login, password, posts) "
-                                    + "SELECT (:flogin, :fpassword, :fposts) FROM User")
-                    .setParameter("flogin", user.getLogin())
-                    .setParameter("fpassword", user.getPassword())
-                    .setParameter("fposts", user.getPosts())
-                    .executeUpdate();
-            session.getTransaction().commit();
+            session.save(user);
         } catch (Exception e) {
             session.getTransaction().rollback();
         }
@@ -40,11 +33,10 @@ public class UserRepository {
         try {
             session.beginTransaction();
             session.createQuery(
-                            "UPDATE User SET login = :flogin, password = :fpassword, "
-                                    + "posts = :fposts WHERE id = :fid")
+                            "UPDATE User SET login = :flogin, password = :fpassword "
+                                    + "WHERE id = :fid")
                     .setParameter("flogin", user.getLogin())
                     .setParameter("fpassword", user.getPassword())
-                    .setParameter("fposts", user.getPosts())
                     .setParameter("fid", user.getId())
                     .executeUpdate();
             session.getTransaction().commit();
@@ -104,8 +96,10 @@ public class UserRepository {
         List<User> result = new ArrayList<>();
         try {
             session.beginTransaction();
-            result = session.createQuery(
-                    "from User u where u.login like" + key).list();
+            Query query = session.createQuery(
+                    "from User u where u.login like :fkey");
+            query.setParameter("fkey", "%" + key + "%");
+            result = query.list();
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();
@@ -119,8 +113,10 @@ public class UserRepository {
         Optional<User> result = Optional.empty();
         try {
             session.beginTransaction();
-            result = session.createQuery(
-                    "from User u where u.login = " + login).uniqueResultOptional();
+            Query query = session.createQuery(
+                    "from User u where u.login = :flogin");
+            query.setParameter("flogin", login);
+            result = query.uniqueResultOptional();
             session.getTransaction().commit();
         } catch (Exception e) {
             session.getTransaction().rollback();

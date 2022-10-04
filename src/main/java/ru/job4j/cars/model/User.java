@@ -15,6 +15,4 @@ public class User {
     @Column(unique = true)
     private String login;
     private String password;
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Collection<Post> posts;
 }

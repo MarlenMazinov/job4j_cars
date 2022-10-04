@@ -14,21 +14,21 @@ public class UserUsage {
                 .buildMetadata().buildSessionFactory()) {
             var userRepository = new UserRepository(sf);
             var user = new User();
-            user.setLogin("admin");
-            user.setPassword("admin");
+            user.setLogin("admin_login");
+            user.setPassword("admin_password");
             userRepository.create(user);
-            userRepository.findAllOrderById()
+            /*userRepository.findAllOrderById()
                     .forEach(System.out::println);
-            userRepository.findByLikeLogin("e")
+            userRepository.findByLikeLogin("og")
                     .forEach(System.out::println);
             userRepository.findById(user.getId())
                     .ifPresent(System.out::println);
-            userRepository.findByLogin("admin")
+            userRepository.findByLogin("admin_login")
                     .ifPresent(System.out::println);
             user.setPassword("password");
             userRepository.update(user);
             userRepository.findById(user.getId())
-                    .ifPresent(System.out::println);
+                    .ifPresent(System.out::println);*/
             userRepository.delete(user.getId());
             userRepository.findAllOrderById()
                     .forEach(System.out::println);

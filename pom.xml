@@ -127,23 +127,24 @@
     <profile>
       <id>test</id>
       <properties>
-        <db.url>jdbc:h2:${basedir}/testdb;MODE=PostgreSQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE;</db.url>
+        <db.url>jdbc:h2:${basedir}/cars;MODE=PostgreSQL;CASE_INSENSITIVE_IDENTIFIERS=TRUE;</db.url>
         <db.username></db.username>
         <db.password></db.password>
         <db.driver>org.h2.Driver</db.driver>
       </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
+
     </profile>
     <profile>
       <id>production</id>
       <properties>
-        <db.url>jdbc:postgresql://localhost:5432/cars</db.url>
+        <db.url>jdbc:postgresql://localhost:5432/car</db.url>
         <db.username>postgres</db.username>
         <db.password>password</db.password>
         <db.driver>org.postgresql.Driver</db.driver>
       </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
     </profile>
   </profiles>
 

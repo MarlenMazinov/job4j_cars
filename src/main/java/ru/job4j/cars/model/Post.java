@@ -15,7 +15,7 @@ public class Post {
     private int id;
     private String description;
     private Date created;
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 }
