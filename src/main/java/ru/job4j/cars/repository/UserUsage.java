@@ -17,7 +17,7 @@ public class UserUsage {
             user.setLogin("admin_login");
             user.setPassword("admin_password");
             userRepository.create(user);
-            /*userRepository.findAllOrderById()
+            userRepository.findAllOrderById()
                     .forEach(System.out::println);
             userRepository.findByLikeLogin("og")
                     .forEach(System.out::println);
@@ -28,7 +28,7 @@ public class UserUsage {
             user.setPassword("password");
             userRepository.update(user);
             userRepository.findById(user.getId())
-                    .ifPresent(System.out::println);*/
+                    .ifPresent(System.out::println);
             userRepository.delete(user.getId());
             userRepository.findAllOrderById()
                     .forEach(System.out::println);
