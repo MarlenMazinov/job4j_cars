@@ -19,7 +19,7 @@ public class UserUsage {
             userRepository.create(user);
             userRepository.findAllOrderById()
                     .forEach(System.out::println);
-            userRepository.findByLikeLogin("og")
+            userRepository.findByLikeLogin("ogo")
                     .forEach(System.out::println);
             userRepository.findById(user.getId())
                     .ifPresent(System.out::println);
